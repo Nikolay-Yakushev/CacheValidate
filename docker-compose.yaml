@@ -1,0 +1,18 @@
+version: "3.2"
+services:
+  redis:
+    image: redis
+    container_name: redis_print
+    env_file:
+      - ./my_dotenv.env.dev
+    ports:
+     - "6379:6379"
+    environment:
+      - REDIS_HOST_env
+      - REDIS_PORT_env
+      - REDIS_PASSWORD_env
+    command: >
+      redis-server --requirepass SECRETKEY
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    restart: always
