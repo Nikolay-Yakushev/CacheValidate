@@ -8,11 +8,11 @@ services:
     ports:
      - "6379:6379"
     environment:
-      - REDIS_HOST_env
+      - REDIS_HOST=REDIS_HOST_env
       - REDIS_PORT_env
       - REDIS_PASSWORD_env
     command: >
-      redis-server --requirepass SECRETKEY
+      redis-server --requirepass REDIS_PASSWORD_env
     volumes:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
     restart: always
